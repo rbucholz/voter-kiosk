@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voter Kiosk</title>
+
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div class="page-header"><img src="images/header-object.png"></div>
+<div class="user-inputs">
+    <input type="text" name="house-number" placeholder="house number" list="house-numbers" class="pre-number-entered">
+    <datalist id="house-numbers"></datalist>
+    <input type="text" name="street-address" placeholder="street name" list="street-addresses">
+    <datalist id="street-addresses"></datalist>
+</div>
+<div id="output" class="pre-number-entered">
+    <div id="district">
+        <div id="ward">56th Ward</div>
+        <div id="division"></div>
+    </div>
+    <div id="voters"></div>
+</div>
+
+<template id="tmpl-voter">
+    <div><img src=""><span></span></div>
+</template>
+
+    <script src="data/voters.js"></script>
+    <script src="js/lookup.js"></script>
+</body>
+</html>

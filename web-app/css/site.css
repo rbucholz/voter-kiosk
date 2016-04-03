@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-header {
+    background-color: #6b9cbd;
+    margin-bottom: 75px;
+}
+
+input[type="text"] {
+    height: 40pt;
+    font-size: 36pt;
+    padding-left: 8px;
+}
+
+input[name="house-number"] {
+    width: 28%;
+}
+
+input[name="street-address"] {
+    width: 69%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 2s;
+}
+
+.pre-number-entered {
+    display: none;
+}
+
+.post-number-entered {
+    display: inline-block;
+}
+
+input.post-street-entered {
+    transform: translateX(-30%);
+    transition: transform 2s;
+}
+
+input.number-ready {
+    display: initial;
+    transition: display 2s;
+}
+
+.user-inputs {
+    height: 105px;
+}
+
+#district {
+    display: inline-block;
+    width: 50%;
+}
+
+#voters span,
+#ward {
+    font-size: 60pt;
+    overflow-x: auto;
+}
+
+#division {
+    font-size: 150pt;
+}
+
+#voters {
+    display: inline-block;
+    width: 40%;
+}
