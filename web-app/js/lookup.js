@@ -30,6 +30,12 @@
         });
     }
 
+    function clearVoters(){
+        while (outputVoters.hasChildNodes()) {
+            outputVoters.removeChild(outputVoters.firstChild);
+        }
+    }
+
     function lookup(){
         switch (this.getAttribute("name")) {
             case "street-address":
@@ -44,10 +50,7 @@
                         datalistNumbers.removeChild(datalistNumbers.firstChild);
                     }
 
-                    while (outputVoters.hasChildNodes()) {
-                        outputVoters.removeChild(outputVoters.firstChild);
-                    }
-
+                    clearVoters();
                     inputStreet.classList.remove("post-street-entered");
                     return;
                 }
@@ -60,6 +63,8 @@
                 }
                 break;
             case "house-number":
+                clearVoters();
+                outputDivision.innerText = "";
                 var enteredNumber = this.value;
                 var household = addresses[inputStreet.value][enteredNumber];
                 if (household){
@@ -78,10 +83,7 @@
                         outputVoters.appendChild(clone);
                     });
                 } else {
-                    outputDivision.innerText = "";
-                    while (outputVoters.hasChildNodes()) {
-                        outputVoters.removeChild(outputVoters.firstChild);
-                    }
+                    // outputDivision.innerText = "";
                 }
                 break;
             default:
