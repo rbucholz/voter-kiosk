@@ -20,7 +20,7 @@
     }
 
     function addHouseNumbers(){
-        if (!inputStreet.value) return;
+        if (!addresses[inputStreet.value]) return;
 
         inputNumber.classList.add("number-ready");
         var houseNumbers = Object.keys(addresses[inputStreet.value]);
@@ -30,17 +30,24 @@
         });
     }
 
-    function clearVoters(){
+    function clearOutput(){
         while (outputVoters.hasChildNodes()) {
             outputVoters.removeChild(outputVoters.firstChild);
         }
+
+        outputDivision.innerText = "";
     }
 
     function lookup(){
+        clearOutput();
+
         switch (this.getAttribute("name")) {
             case "street-address":
-                // reset screen if street is empty
-                if (!this.value){
+                this. value && (this.value = this.value.toUpperCase());
+                var enteredStreet = addresses[this.value];
+
+                // reset screen if street is invalid
+                if (!enteredStreet){
                     output.classList.add("pre-number-entered");
 
                     inputNumber.classList.add("pre-number-entered");
@@ -50,21 +57,16 @@
                         datalistNumbers.removeChild(datalistNumbers.firstChild);
                     }
 
-                    clearVoters();
                     inputStreet.classList.remove("post-street-entered");
                     return;
                 }
 
-                this.value = this.value.toUpperCase();
-                var enteredStreet = addresses[this.value];
                 if (enteredStreet){
                     this.classList.add("post-street-entered");
                     inputNumber.classList.add("number-ready");
                 }
                 break;
             case "house-number":
-                clearVoters();
-                outputDivision.innerText = "";
                 var enteredNumber = this.value;
                 var household = addresses[inputStreet.value][enteredNumber];
                 if (household){
@@ -82,8 +84,6 @@
                         var clone = document.importNode(voterTemplate.content, true);
                         outputVoters.appendChild(clone);
                     });
-                } else {
-                    // outputDivision.innerText = "";
                 }
                 break;
             default:
